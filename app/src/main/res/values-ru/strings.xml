@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Первое приложение</string>
+    <string name="sunny">Солнечно</string>
+    <string name="cloudy">Облачно</string>
+    <string name="rainy">Дожди</string>
+    <string name="moscow">Москва</string>
+</resources>

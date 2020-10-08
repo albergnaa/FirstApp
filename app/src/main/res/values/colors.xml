@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary">#666666</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="colorSunnyBack">#f8ff90</color>
+    <color name="colorCloudyBack">#c5edff</color>
+    <color name="colorRainyBack">#8382ff</color>
+    <color name="colorSunnyButton">#fffa07</color>
+    <color name="colorCloudyButton">#42b6ff</color>
+    <color name="colorRainyButton">#1300a3</color>
 </resources>
