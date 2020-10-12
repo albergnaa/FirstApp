@@ -4,4 +4,5 @@
     <string name="cloudy">Cloudy</string>
     <string name="rainy">Rainy</string>
     <string name="moscow">Moscow</string>
+    <string name="edit_hint">Enter temperature</string>
 </resources>
