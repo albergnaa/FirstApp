@@ -2,9 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainWindow"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/mainWindow"
     android:background="@color/colorSunnyBack"
     tools:context=".MainActivity">
 
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/moscow"
         android:textSize="40dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,8 +34,8 @@
         android:id="@+id/temperatureTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="88dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="25dp"
         android:text="18"
         android:textSize="60dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,37 +53,66 @@
         app:layout_constraintTop_toBottomOf="@+id/temperatureTextView"
         app:srcCompat="@mipmap/sunny" />
 
+    <EditText
+        android:id="@+id/tempEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:hint="@string/edit_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weatherTypeImageView" />
+
+    <Button
+        android:id="@+id/okButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:text="@android:string/ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weatherTypeImageView" />
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="409dp"
-        android:layout_height="378dp"
-        android:layout_marginTop="48dp"
+        android:layout_height="70dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weatherTypeImageView">
+        app:layout_constraintTop_toBottomOf="@+id/tempEditText">
 
         <Button
             android:id="@+id/sunnyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/sunny"
-            android:background="@color/colorSunnyButton"/>
+            android:background="@color/colorSunnyButton"
+            android:text="@string/sunny" />
 
         <Button
             android:id="@+id/cloudyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/cloudy"
-            android:background="@color/colorCloudyButton"/>
+            android:background="@color/colorCloudyButton"
+            android:text="@string/cloudy" />
 
         <Button
             android:id="@+id/rainyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/rainy"
-            android:background="@color/colorRainyButton"/>
+            android:background="@color/colorRainyButton"
+            android:text="@string/rainy" />
+
     </LinearLayout>
+
+    <Switch
+        android:id="@+id/tempSwitch"
+        android:layout_width="102dp"
+        android:layout_height="48dp"
+        android:text="C/F"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
 </android.support.constraint.ConstraintLayout>
