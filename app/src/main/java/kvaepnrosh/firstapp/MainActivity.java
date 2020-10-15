@@ -1,6 +1,9 @@
 package kvaepnrosh.firstapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,17 +16,33 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Constants {
 
     private static final String TEMP_KEY = "TEMP_KEY";
     private static final String SWITCH_KEY = "SWITCH_KEY";
+    private final static int REQUEST_CODE = 1;
 
     private ConstraintLayout constraintLayout;
+    private TextView txtCityName;
     private TextView txtWeatherType;
     private ImageView imgWeatherType;
     private Switch tempSwitch;
     private EditText tempEditText;
     private TextView tempTextView;
+    private Button infoButton;
+    private Button chooseCityButton;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode!=REQUEST_CODE) {
+            super.onActivityResult(requestCode, resultCode, data);
+            return;
+        }else{
+            txtCityName= findViewById(R.id.cityTextView);
+            String cityName = data.getStringExtra(CITY_NAME);
+            txtCityName.setText(cityName);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         tempEditText = findViewById(R.id.tempEditText);
         Button btnOk = findViewById(R.id.okButton);
         tempTextView = findViewById(R.id.temperatureTextView);
@@ -88,6 +106,26 @@ public class MainActivity extends AppCompatActivity {
                     double tempC = 5 * (Double.valueOf(temp) - 32) / 9;
                     tempTextView.setText(String.valueOf((int) tempC));
                 }
+            }
+        });
+
+        chooseCityButton = findViewById(R.id.changeCityButton);
+        chooseCityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ChoosingCityActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
+
+        txtCityName= findViewById(R.id.cityTextView);
+        infoButton = findViewById(R.id.infoButton);
+        infoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri address = Uri.parse("https://ru.wikipedia.org/wiki/"+txtCityName.getText().toString());
+                Intent infoIntent = new Intent(Intent.ACTION_VIEW, address);
+                startActivity(infoIntent);
             }
         });
 

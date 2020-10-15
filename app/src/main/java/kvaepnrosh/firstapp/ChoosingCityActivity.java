@@ -24,11 +24,10 @@ public class ChoosingCityActivity extends AppCompatActivity {
         addCityImageView = findViewById(R.id.addCityImageView);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        cityAdapter = new CityAdapter();
-        recyclerView.setAdapter(cityAdapter);
 
-        List<String> cities = Arrays.asList("Санкт-Петербург", "Хабаровск", "Москва");
-        cityAdapter.setItems(cities);
+        List<String> cities = Arrays.asList("Казань", "Хабаровск", "Москва");
+        cityAdapter = new CityAdapter(cities, ChoosingCityActivity.this);
+        recyclerView.setAdapter(cityAdapter);
 
         addCityImageView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -36,6 +35,4 @@ public class ChoosingCityActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
