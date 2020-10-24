@@ -1,26 +1,34 @@
 package kvaepnrosh.firstapp;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.List;
 
 
-public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityHolder> {
+public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityHolder> implements Constants{
 
-    private List<String> cityList = new ArrayList<>();
+    private final static int RESULT_OK = 1;
 
-    public void setItems(Collection<String> cities) {
-        cityList.addAll(cities);
+    private List<String> cityList;
+    private Context ctx;
+
+    public CityAdapter(List<String> cityList, Context ctx) {
+        this.cityList = cityList;
+        this.ctx = ctx;
+    }
+
+    public void setItems() {
+        cityList.addAll(cityList);
         notifyDataSetChanged();
     }
 
@@ -52,7 +60,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityHolder> {
         private TextView dataItemTextView;
         private TextView temperatureItemTextView;
 
-        public CityHolder(@NonNull View itemView) {
+        public CityHolder(@NonNull final View itemView) {
             super(itemView);
             cityItemTextView = itemView.findViewById(R.id.cityItemTextView);
             dataItemTextView = itemView.findViewById(R.id.dataItemTextView);
@@ -60,9 +68,12 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.CityHolder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //переход к основному окну
-                    int positionIndex = getAdapterPosition();
-                    Toast.makeText(v.getContext(), String.valueOf(positionIndex), Toast.LENGTH_SHORT).show();
+                    String city = cityList.get(getAdapterPosition());
+                    Intent intentResult = new Intent();
+                    intentResult.putExtra(CITY_NAME, city);
+                    ((Activity)v.getContext()).setResult(RESULT_OK, intentResult);
+                    ((Activity)v.getContext()).finish();
+
                 }
             });
         }
